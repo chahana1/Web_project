@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <style>
+      body {
+
+        margin-top: 20px;
+        background: #f8f8f8;
+      }
+
+      .wrap {
+        width: 1000px;
+        height: 600px;
+        margin: 0 auto;
+      }
+
+      .content {
+        width: 100%;
+        height: 100%;
+
+      }
+
+      .headbar {
+        height: 10px;
+      }
+
+      .card {
+        height: 600px;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <div class="wrap">
+      <div class="headbar"></div>
+      <div class="content">
+        <div class="container">
+          <div class="row flex-lg-nowrap">
+
+            <div class="col">
+              <div class="row">
+                <div class="col mb-3">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="e-profile test" id="image_container">
+                        <div class="row">
+                          <div class="col-12 col-sm-auto mb-3 ">
+                            <div class="mx-auto" style="width: 140px;">
+                              <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
+                                <span style="color: rgb(166, 168, 170); font: bold 8pt Arial;">140x140</span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                            <div class="text-center text-sm-left mb-2 mb-sm-0">
+                              <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">John Smith</h4>
+                              <p class="mb-0">@johnny.s</p>
+                              <div class="text-muted">
+                                <small>Last seen 2 hours ago</small>
+                              </div>
+                              <div class="mt-2">
+                                <input type="file" name="file" id="file">
+                              </div>
+                            </div>
+                            <div class="text-center text-sm-right">
+                              <span class="badge badge-secondary">administrator</span>
+                              <div class="text-muted">
+                                <small>Joined 09 Dec 2017</small>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="tab-content pt-3">
+                          <div class="tab-pane active">
+                            <form class="form" novalidate="">
+                              <div class="row">
+                                <div class="col">
+                                  <div class="row">
+                                    <div class="col">
+                                      <div class="form-group">
+                                        <label>반려동물 이름</label>
+                                        <input class="form-control" type="text" name="name" placeholder="John Smith" value="John Smith">
+                                      </div>
+                                    </div>
+                                    <div class="col">
+                                      <div class="form-group">
+                                        <label>사용자</label>
+                                        <input class="form-control" type="text" name="username" placeholder="johnny.s" value="johnny.s">
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col">
+                                      <div class="form-group">
+                                        <label>주소</label>
+                                        <input class="form-control" type="text">
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col mb-3">
+                                      <div class="form-group">
+                                        <label>특징</label>
+                                        <textarea class="form-control" rows="5" id="char"></textarea>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="row"></div>
+                            </div>
+                            <div class="col-12 col-sm-5 offset-sm-1 mb-3"></div>
+                          </div>
+                          <div class="row">
+                            <div class="col d-flex justify-content-end">
+                              <button class="btn btn-primary" type="submit">내 반려동물 등록하기</button>
+                            </div>
+                          </div>
+                        </form>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-3 mb-3">
+
+              <div class="card">
+                <div class="card-body">
+                  <h6 class="card-title font-weight-bold">활동내역</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
+<script>
+function setThumbnail(event) {
+  var reader = new FileReader();
+
+  reader.onload = function (event) {
+    var img = document.createElement('img');
+    img.setAttribute('src', event.target.result);
+    document
+      .querySelector('div#image_container')
+      .appendChild(img);
+    img
+      .classList
+      .add("test");
+  };
+  reader.readAsDataURL(event.target.files[0]);
+}
+</script>
+
+</html>

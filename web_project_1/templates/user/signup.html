@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <style>
+    .inner {
+      margin: 50px 200px 200px;
+    }
+  </style>
+
+</html>
+{% extends 'base.html' %}
+{% block contents %}
+  <section id="banner">
+    <div class="container inner" style="width:60%; margin-top:5rem">
+      <h3 class="pb-3 border-bottom" style="color:black">
+        <strong>회원가입</strong>
+      </h3>
+      {% include 'form_errors.html' %}
+      <form method="post">
+        {% csrf_token %}
+        <div class="form-group mt-2">
+          <label for="email" class="form-label" style="color:black">이메일</label>
+          <input type="email" name="email" id="email" class="form-control bg-white" style="color:black" value="{{form.email.value|default_if_none:''}}"/>
+        </div>
+        <div class="form-group mt-2">
+          <label for="password" class="form-label" style="color:black">비밀번호</label>
+          <input type="password" name="password1" id="password1" class="form-control bg-white" style="color:black" value="{{form.password1.value|default_if_none:''}}"/>
+        </div>
+        <div class="form-group mt-2">
+          <label for="password" class="form-label" style="color:black">비밀번호 확인</label>
+          <input type="password" name="password2" id="password2" class="form-control bg-white" style="color:black" value="{{form.password2.value|default_if_none:''}}"/>
+        </div>
+        <div class="form-group mt-2">
+          <label for="name" class="form-label" style="color:black">이름</label>
+          <input type="text" name="name" id="name" class="form-control bg-white" style="color:black" value="{{form.name.value|default_if_none:''}}"/>
+        </div>
+        <div class="form-group mt-2">
+          <label for="gender" class="form-label" style="color:black">성별</label>
+          <select name="gender" id="" class="form-control-transparent bg-white" style="color:black">
+            <option value="">----</option>
+            <option value="0">남자</option>
+            <option value="1">여자</option>
+            <option value="2">비공개</option>
+          </select>
+        </div>
+        <section>
+          <div class="form-group mt-3">
+            <button class="btn" type="submit" style="background-color:#675444; color:#fff">회원가입</button>
+          </div>
+        </section>
+      </form>
+    </div>
+  </section>
+
+{% endblock contents %}
+{% block script %}
+  <script>
+    // 회원가입 확인 창
+    document
+      .querySelector(".btn-transparent")
+      .addEventListener("click", (e) => {
+        if (confirm("가입하시겠습니까?") == false) {
+          e.preventDefault();
+        }
+      });
+  </script>
+{% endblock script %}

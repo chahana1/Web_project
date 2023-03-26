@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block contents %}
+  <div class="container">
+    <h4 class="pb-2 mb-5 mt-5">
+      상세보기
+    </h4>
+    {% include "form_errors.html" %}
+    <!-- 폼 요소에 type='file' 포함이 되어 있다면 form enctype(인코딩타입) 속성 필요함 text 형태의 데이터 전송 시 enctype 타입은 application/x-www-form-urlencode(기본) 설정되어있음 -->
+
+    <div class="form-group my-2 col">
+      <label for="title" class="form-label">제목</label>
+      <input type="text" name="title" id="title" class="form-control" value="{{detail.title}}" disabled="disabled">
+    </div>
+    <div class="row row-cols-auto">
+      <div class="form-group col me-3">
+        {% if detail.important %}
+          <input type="checkbox" class="btn-check" id="important" name="important" checked="checked" disabled="disabled">
+        {% else %}
+          <input type="checkbox" class="btn-check" id="important" name="important" disabled="disabled">
+        {% endif %}
+        <label class="btn btn-outline-danger" for="important">important</label>
+      </div>
+      <div class="form-group col">
+        {% if detail.complete %}
+          <input type="checkbox" class="btn-check" id="complete" name="complete" checked="checked" disabled="disabled">
+        {% else %}
+          <input type="checkbox" class="btn-check" id="complete" name="complete" disabled="disabled">
+        {% endif %}
+        <label class="btn btn-outline-secondary" for="complete">complete</label>
+      </div>
+    </div>
+    <div class="form-group my-2">
+      <label for="description" class="form-label">내용</label>
+      <textarea name="description" id="description" rows="7" class="form-control" disabled="disabled">{{detail.description}}</textarea>
+    </div>
+    <div class="row">
+      <div class="form-group col my-2">
+        <label for="start_date" class="form-label">시작일시</label>
+        <input type="datetime-local" class="form-control" id="start_date" name="start_date" value="{{detail.start_date|date:'Y-m-d H:i'}}" disabled="disabled">
+      </div>
+      <div class="form-group col my-2">
+        <label for="end_date" class="form-label">종료일시</label>
+        <input type="datetime-local" class="form-control" id="end_date" name="end_date" value="{{detail.end_date|date:'Y-m-d H:i'}}" disabled="disabled">
+      </div>
+    </div>
+    <div class="row row-cols-auto">
+
+      <div class="form-group my-3 col me-3">
+        <a href="{% url 'todo_list' %}" class="btn text-white" style="background-color: gray;">목록으로</a>
+      </div>
+      <div class="form-group my-3 col">
+        <a href="{% url 'event_edit' pk=detail.id %}" class="btn text-white" style="background-color: gray;">수정하기</a>
+      </div>
+      <div class="form-group my-3 col">
+        <a href="{% url 'event_delete' pk=detail.id %}" class="btn text-white" style="background-color: gray;">삭제하기</a>
+      </div>
+    </div>
+  </div>
+{% endblock contents %}

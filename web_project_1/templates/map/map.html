@@ -1,0 +1,78 @@
+{% extends 'base.html' %} {% load static %} {% block style %}
+<style>
+  .fa-solid {
+    color: #675444;
+  }
+</style>
+<link rel="stylesheet" href="{% static 'css/map_style.css' %}" />
+<script
+  src="https://kit.fontawesome.com/482f2e22f6.js"
+  crossorigin="anonymous"
+></script>
+
+{% endblock style %} {% block contents %}
+<div class="container mt-5" style="margin: 0 auto; text-align: center">
+  <a href="{% url 'find_index' %}" class="move">
+    <h1>
+      <i class="fa-solid fa-paw"></i> <strong>지도 보기</strong>
+      <i class="fa-solid fa-paw"></i>
+    </h1>
+    <p>필요한 주변 시설을 찾아보세요.</p>
+  </a>
+  <div class="map_wrap">
+    <div
+      id="map"
+      style="width: 100%; height: 100%; position: relative; overflow: hidden"
+    ></div>
+    <ul id="category">
+      <li id="동물병원" data-order="0">
+        <span class="category_bg bank"></span>
+        동물병원
+      </li>
+      <li id="애견호텔" data-order="1">
+        <span class="category_bg mart"></span>
+        애견호텔
+      </li>
+      <li id="반려동물카페" data-order="2">
+        <span class="category_bg pharmacy"></span>
+        반려동물카페
+      </li>
+      <li id="반려동물훈련소" data-order="3">
+        <span class="category_bg oil"></span>
+        반려동물훈련소
+      </li>
+      <li id="반려동물운동장" data-order="4">
+        <span class="category_bg cafe"></span>
+        반려동물운동장
+      </li>
+      <li id="유기동물보호소" data-order="5">
+        <span class="category_bg store"></span>
+        유기동물보호소
+      </li>
+    </ul>
+  </div>
+  <div class="row mt-20">
+    <div class="col-10">
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th>장소명</th>
+            <th>주소</th>
+            <th>지번</th>
+            <th>전화번호</th>
+            <th>상세보기</th>
+          </tr>
+        </thead>
+        <tbody id="tb"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock contents %} {% block script %}
+<script
+  type="text/javascript"
+  src="//dapi.kakao.com/v2/maps/sdk.js?appkey=af11d33df30da3cb1be17f209dd3646b&libraries=services,clusterer,drawing"
+></script>
+<script src="{% static 'js/map.js' %}"></script>
+{% endblock script %}

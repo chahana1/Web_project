@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block contents %}
+  <div class="container" style="margin-top:5rem">
+    {% include "form_errors.html" %}
+    <!-- 폼 요소에 type='file' 포함이 되어 있다면 form enctype(인코딩타입) 속성 필요함 text 형태의 데이터 전송 시 enctype 타입은 application/x-www-form-urlencode(기본) 설정되어있음 -->
+
+    <form method="POST" class="col-lg-8 col-md-10 mx-auto" enctype="multipart/form-data">
+      {% csrf_token %}
+      <h3 class="pb-2 mt-5">
+        <strong>봉사활동 추가</strong>
+      </h3>
+      <hr/>
+      <div class="form-group my-2 col">
+        <label for="org_name" class="form-label">단체 및 시설 이름</label>
+        <input type="text" name="org_name" id="org_name" class="form-control" value=""/>
+      </div>
+      <div class="form-group my-2 col">
+        <label for="addr" class="form-label">주소</label>
+        <input type="text" name="addr" id="addr" class="form-control" value=""/>
+      </div>
+      <div class="form-group my-2 col">
+        <label for="director" class="form-label">담당자</label>
+        <input type="text" name="director" id="director" class="form-control" value=""/>
+      </div>
+      <div class="form-group my-2 col">
+        <label for="phone_num" class="form-label">담당자 연락처</label>
+        <input type="text" name="phone_num" id="phone_num" class="form-control" value=""/>
+      </div>
+      <div class="form-group my-3">
+        <button class="btn text-white" style="background-color:#675444; color:#fff" type="submit">
+          생성하기
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock contents %}

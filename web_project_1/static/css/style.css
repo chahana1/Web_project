@@ -1,0 +1,251 @@
+textarea {
+  resize: none;
+}
+
+#hero {
+  width: 100%;
+  height: 100vh;
+  background: url("../img/bg.png") top center;
+  background-size: cover;
+  position: relative;
+}
+
+#hero:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+#hero .hero-container {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 0 15px;
+  margin-right: 55rem;
+  margin-bottom: 5rem;
+}
+
+#hero h3 {
+  background: rgba(255, 255, 255, 0.1);
+  color: #000;
+  font-size: 26px;
+  padding: 10px 30px;
+  margin-bottom: 30px;
+  border-radius: 50px;
+}
+
+#hero h1 {
+  margin: 0 0 10px 0;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  text-transform: uppercase;
+  color: #000;
+}
+
+#hero h2 {
+  color: #000;
+  margin-bottom: 40px;
+  font-size: 24px;
+}
+
+#hero .btn-get-started {
+  font-family: "Poppins", sans-serif;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 8px 30px 9px 30px;
+  border-radius: 50px;
+  transition: 0.5s;
+  border: 2px solid #000;
+  color: #000;
+}
+
+#hero .btn-get-started:hover {
+  background: #e43c5c;
+  border: 2px solid #e43c5c;
+}
+
+@media (min-width: 1024px) {
+  #hero {
+    background-attachment: fixed;
+  }
+}
+
+@media (max-width: 768px) {
+  #hero h3 {
+    font-size: 22px;
+  }
+
+  #hero h1 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+
+  #hero h2 {
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-height: 500px) {
+  #hero {
+    height: 150vh;
+  }
+}
+
+input:checked + .slider {
+  background-color: #303136;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #eaeaea;
+  transition: 0.4s;
+  border-radius: 30px;
+}
+
+.switch {
+  --width-of-switch: 3.5em;
+  --height-of-switch: 2em;
+  --size-of-icon: 1.4em;
+  --slider-offset: 0.3em;
+  position: relative;
+  width: var(--width-of-switch);
+  height: var(--height-of-switch);
+  margin-bottom: 0;
+}
+
+label {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+button,
+input {
+  font-family: "Poppins", sans-serif;
+}
+
+input:checked + .slider:before {
+  left: calc(100% - (var(--size-of-icon, 1.4em) + var(--slider-offset, 0.3em)));
+  background: #303136;
+  box-shadow: inset -3px -2px 5px -2px #8983f7, inset -10px -4px 0 0 #a3dafb;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: var(--size-of-icon, 1.4em);
+  width: var(--size-of-icon, 1.4em);
+  border-radius: 20px;
+  left: var(--slider-offset, 0.3em);
+  top: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(40deg, #ff0080, #ff8c00 70%);
+  transition: 0.4s;
+}
+.card-img-top {
+  height: 300px;
+  object-fit: cover;
+}
+
+.bi-chat-square-heart {
+  font-size: 30px;
+  color: #fa565c;
+}
+
+.answer li {
+  list-style: none;
+}
+.comment_create {
+  text-decoration: none;
+  color: inherit;
+}
+#att_zone {
+  width: 550px;
+  min-height: 150px;
+  padding: 10px;
+  border: 1px dotted silver;
+}
+#att_zone:empty:before {
+  content: attr(data-placeholder);
+  color: #999;
+  font-size: 0.9em;
+}
+.test {
+  width: 150px;
+  height: 150px;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: -30px;
+}
+.page-link {
+  color: #000;
+  background-color: #fff;
+  border: 1px solid #ccc;
+}
+
+.page-item.active .page-link {
+  z-index: 1;
+  color: #555;
+  font-weight: bold;
+  background-color: #f1f1f1;
+  border-color: #ccc;
+}
+
+.page-link:focus,
+.page-link:hover {
+  color: #000;
+  background-color: #fafafa;
+  border-color: #ccc;
+}
+.bi-chat-square-heart {
+  font-size: 30px;
+  color: crimson;
+}
+.detail_img {
+  height: 500px;
+  object-fit: cover;
+}
+.pagination {
+  margin-top: 35px;
+}
+
+.move {
+  text-decoration: none;
+  color: inherit;
+}
+
+.title {
+  text-align: left;
+}

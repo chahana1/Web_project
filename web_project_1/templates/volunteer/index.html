@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block style %}
+  <style>
+    .completed {
+      width: 16rem;
+      object-fit: cover;
+      position: absolute;
+      top: -1rem;
+      left: 3rem;
+    }
+
+    .theend {
+      width: 15rem;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 4rem;
+    }
+
+    .fa-solid {
+      color: #675444;
+    }
+  </style>
+  <script src="https://kit.fontawesome.com/482f2e22f6.js" crossorigin="anonymous"></script>
+{% endblock style %}
+
+{% block contents %}
+  <div class="container my-3 mb-5">
+    <div class='pt-5'>
+      <div class="d-flex justify-content-center mt-3 mb-5">
+        <a href="{% url 'vol_index' %}" class='list' style="text-decoration:none; color:black">
+          <h1>
+            <i class="fa-solid fa-paw"></i>
+            <strong>Volunteer</strong>
+            <i class="fa-solid fa-paw"></i>
+          </h1>
+        </a>
+      </div>
+      <hr style="width:40rem; margin: 0 auto;"/>
+    </div>
+    <div class="row  justify-content-center">
+      <div class="col-10">
+        {% if user.is_authenticated and user.is_superuser %}
+          <div class="row justify-content-end">
+            <div class="col-md-2 my-5">
+              <a href="{% url 'create_vol' %}" class="btn mx-auto d-block " style="background-color:#675444; color:#fff">일정 생성</a>
+            </div>
+            <div class="col-md-2 my-5">
+              <a href="{% url 'create_org' %}" class="btn mx-auto d-block" style="background-color:#675444; color:#fff">업체 등록</a>
+            </div>
+          {% endif %}
+          {% for list in vol_list %}
+            <div class="card mb-3 p-0">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <a href="{% url 'vol_detail' list.id %}" class="detail_url">
+                    <img src="{{list.image.url }}" class="img-fluid rounded-start" alt="..." style="height: 242px;">
+                  </a>
+                  {%if list.end_date|date:'Y-m-d H:i' < today %}
+                    <img src="{% static 'img/The_end.png' %}" alt="" class="theend">
+                  {%endif%}
+                  {%for i in vol_id%}
+                    {%if i.vol_id == list.id %}
+                      <img src="{% static 'img/comp.png' %}" alt="" class="completed">
+                    {%endif%}
+                  {% endfor %}
+
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                          <h2 class="card-title" style="text-decoration:none; color:#000">
+                            <strong>{{list.title}}</strong>
+                          </h2>
+                        </a>
+                        <div class="card-text">
+                          <p>
+                            단체 및 시설 이름 :
+                            {{list.organization}}</br>
+                          주소 :
+                          {{list.organization.addr}}</br>
+                        <p class="date">신청 기간 :
+                          {{list.start_date|date:'Y-m-d H:i'}}
+                          ~
+                          {{list.end_date|date:'Y-m-d H:i'}}
+                        </p>
+                        <small class="text-muted">
+                          등록일 :
+                          {{list.created_at}}</small>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  {% endblock contents %}
+  {% block script %}
+    <script>
+      let deadline = document.querySelectorAll(".date")
+      deadline.forEach((date, idx) => {
+        end_date = date
+          .innerText
+          .split("~")[1];
+        let end = new Date(end_date)
+        let today = new Date("{{today}}")
+        if (end < today) {
+          let link = document.querySelectorAll(".detail_url")
+          link[idx].addEventListener("click", (e) => {
+            e.preventDefault();
+            alert("이미종료된 활동 입니다.")
+          })
+        }
+      })
+    </script>
+  {% endblock script %}

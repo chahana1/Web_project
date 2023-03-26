@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block contents %}
+  <div class="container">
+    <h4 class="pb-2 mb-5 mt-5">
+      상세보기
+    </h4>
+    {% include "form_errors.html" %}
+    <!-- 폼 요소에 type='file' 포함이 되어 있다면 form enctype(인코딩타입) 속성 필요함 text 형태의 데이터 전송 시 enctype 타입은 application/x-www-form-urlencode(기본) 설정되어있음 -->
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="form-group my-2 col">
+        <label for="title" class="form-label">제목</label>
+        <input type="text" name="title" id="title" class="form-control" value="{{form.title.value}}">
+      </div>
+      <div class="row">
+        <div class="form-group col-1 me-3">
+          {% if form.important.value %}
+            <input type="checkbox" class="btn-check" id="important" name="important" checked="checked">
+          {% else %}
+            <input type="checkbox" class="btn-check" id="important" name="important">
+          {% endif %}
+          <label class="btn btn-outline-danger" for="important">important</label>
+        </div>
+        <div class="form-group col">
+          {% if form.complete.value %}
+            <input type="checkbox" class="btn-check" id="complete" name="complete" checked="checked">
+          {% else %}
+            <input type="checkbox" class="btn-check" id="complete" name="complete">
+          {% endif %}
+          <label class="btn btn-outline-secondary" for="complete">complete</label>
+        </div>
+      </div>
+      <div class="form-group my-2">
+        <label for="description" class="form-label">내용</label>
+        <textarea name="description" id="description" rows="7" class="form-control">{{form.description.value}}</textarea>
+      </div>
+      <div class="row">
+        <div class="form-group col my-2">
+          <label for="start_date" class="form-label">시작일시</label>
+          <input type="datetime-local" class="form-control" id="start_date" name="start_date" value="{{form.start_date.value|date:'Y-m-d H:i'}}">
+        </div>
+        <div class="form-group col my-2">
+          <label for="end_date" class="form-label">종료일시</label>
+          <input type="datetime-local" class="form-control" id="end_date" name="end_date" value="{{form.end_date.value|date:'Y-m-d H:i'}}">
+        </div>
+      </div>
+      <div class="form-group my-3">
+        <button class="btn text-white" style="background-color: gray;" type="submit">수정하기</button>
+      </div>
+    </form>
+  </div>
+{% endblock contents %}

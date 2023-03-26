@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block style %}{% endblock style %}
+{% block contents %}
+  <div calss="container">
+    <div id='calendar' class="m-5"></div>
+  </div>
+{% endblock contents %}
+{% block script %}
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.1/index.global.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var calendarEl = document.getElementById('calendar');
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        eventClick: function (info) {
+          location.href = '/todo_list/' + info.event.id
+        },
+        customButtons: {
+          addevent: {
+            text: 'add_event',
+            click: function () {
+              location.href = "{% url 'add_event' %}"
+            }
+          }
+        },
+        headerToolbar: {
+          left: 'prev,next today addevent',
+          center: 'title',
+          right: 'dayGridMonth,timeGridWeek,timeGridDay'
+        },
+        events: todo
+      });
+      calendar.setOption('contentHeight', 700);
+      calendar.render();
+    });
+    var todo = JSON.parse("{{ todoJson|escapejs }}");
+    console.log(todo)
+  </script>
+{% endblock script %}

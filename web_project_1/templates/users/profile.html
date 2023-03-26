@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% block style %}
+  <style>
+    .fa-solid {
+      color: #675444;
+    }
+  </style>
+
+  <script src="https://kit.fontawesome.com/482f2e22f6.js" crossorigin="anonymous"></script>
+{% endblock style %}
+
+{% block contents %}
+
+  <div class="wrap">
+    <div class="content">
+      <div class="container mt-4" style="width:70%">
+        <div class='pt-3'>
+          <div class="d-flex justify-content-center mb-3">
+
+            <h1>
+              <i class="fa-solid fa-paw"></i>
+              <strong>프로필</strong>
+              <i class="fa-solid fa-paw"></i>
+            </h1>
+          </div>
+          <div class="row flex-lg-nowrap">
+
+            <div class="col mb-3">
+              <div class="card">
+                <div class="card-body">
+                  <div class="e-profile">
+                    <div class="row">
+                      <div class="col-12 col-sm-auto mb-3 " style="">
+                        <div class="col-12 col-md-3 mb-3" style="position:absolute; margin-left:40rem; margin-top:0.5em; width:25rem">
+
+                          <div class="card">
+                            <div class="card-body">
+                              <h4 class="card-title font-weight-bold">
+                                <strong>활동내역</strong>
+                              </h4>
+
+                              자유게시판 개수:
+                              {{ count }}
+                              개
+
+                              <br>실종 글 개수 :
+                              {{ count1 }}
+                              개
+                              <br>
+                              임시보호 글 개수 :
+                              {{ count2 }}
+                              개<br>
+
+                            </div>
+                          </div>
+                        </div>
+                        {% if form.image %}
+                          <img class='mx-auto d-block' src="/media/{{form.image.value}}" alt="" style="width: 250px; height: 150px; object-fit:cover;">
+                        {% endif %}
+                        <form class="form" method="post" enctype='multipart/form-data'>
+                          {% csrf_token %}
+                          <input type="file" name="image" id="image" class="form-control mt-3 " value="">
+                        </div>
+                      </div>
+
+                      <div class="tab-content pt-3">
+                        <div class="tab-pane active">
+
+                          <div class="row">
+                            <div class="col">
+                              <div class="row">
+                                <div class="col">
+                                  <div class="form-group ">
+                                    <label>반려동물 이름</label>
+                                    <input class="form-control mb-2" type="text" name="pet_name" placeholder="반려동물 이름" id="pet_name" value="{{form.pet_name.value}}">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col">
+                                  <div class="form-group">
+                                    <label>주소</label>
+                                    <input class="form-control mb-2" type="text" id="address" name="address" value="{{form.address.value}}">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col">
+                                  <div class="form-group">
+                                    <label>생일</label>
+                                    <input class="form-control mb-2" type="text" placeholder="0000.00.00" name="birth" id="birth" value="{{form.birth.value}}">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col mb-3">
+                                  <div class="form-group">
+                                    <label>특징</label>
+                                    <textarea class="form-control" rows="4" name="char" id="char">{{form.char.value}}</textarea>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col d-flex justify-content-end">
+                          <button class="btn" type="submit" style="background-color:#675444; color:#fff">내 반려동물 등록하기</button>
+                        </div>
+                      </div>
+                    </form>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock contents %}
